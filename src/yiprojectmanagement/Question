@@ -1,1 +1,22 @@
+private String question;
+private String answer;
+public Question(){
+ question = "";
+  answer = "";
+}
+public Patron(String question, String answer){
+  
+}
+
+public boolean isCorrect(String answer){
+  if (this.answer.equals(answer)){
+    return true;
+  } else{
+    return false;
+  }
+}
+public String toString(){
+  
+  return str;
+}
 
