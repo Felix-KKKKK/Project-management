@@ -1,6 +1,7 @@
 public class Question{
 private String question;
 private String answer;
+
 public Question(){
  question = "";
   answer = "";
