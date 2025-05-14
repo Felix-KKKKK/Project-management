@@ -1,4 +1,4 @@
-//
+
 package yiprojectmanagement;
 
 import javax.swing.JOptionPane;
@@ -71,6 +71,10 @@ public class YiProjectManagement {
             JOptionPane.showMessageDialog(null, studyMaterial);
         }
         else if(ans == 2){
+            //do the quiz for them
+        }else if(ans == 2){
+            //do the quiz for them
+        }else (ans == 2){
             //do the quiz for them
         }
     }
