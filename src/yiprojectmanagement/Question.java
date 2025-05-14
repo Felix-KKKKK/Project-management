@@ -34,6 +34,6 @@ public void setQuestion(String question){
 
 public String toString(){
   
-  return str;
+  return "Question: What is "+question+"\nAnswer: "+answer;
 }
 }
