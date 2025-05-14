@@ -28,7 +28,7 @@ public String getQuestion(){
  return question;
 }
 
-public void setQuestion(){
+public void setQuestion(String question){
  this.question = question;
 }
 
