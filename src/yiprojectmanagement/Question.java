@@ -1,3 +1,4 @@
+public class Question{
 private String question;
 private String answer;
 public Question(){
@@ -35,4 +36,4 @@ public String toString(){
   
   return str;
 }
-
+}
