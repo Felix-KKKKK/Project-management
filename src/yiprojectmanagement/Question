@@ -1,9 +1,15 @@
+public class Question{
 private String question;
 private String answer;
 public Question(){
  question = "";
   answer = "";
 }
+public Question(String question, String answer){
+        this();
+        this.question = question;
+        this.answer = answer;
+    }
 public Patron(String question, String answer){
   
 }
@@ -20,3 +26,4 @@ public String toString(){
   return str;
 }
 
+}
