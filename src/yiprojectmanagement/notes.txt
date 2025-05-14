@@ -1,10 +1,10 @@
 System:a combination of software and hardware that provides a solution for a problem
-Problem statement:what the software will be able to help and solve.
-Analysis:finding the software’s requirements and direct objective
-Design:the structure of the software is designed
-Implementation:the actual coding and development of the software
-Integration /Test:testing on the software for feedback and ensures safety
-Maintenance:corrects errors, enhance functionality or adapt software to new environments
-SDLC:Software Development Life Cycle
+Problem statement:created to conclude what the software will be able to help and solve.
+Analysis:the phase for finding the software’s requirements and direct objective
+Design:the phase when the structure of the software is designed
+Implementation:the phase when the actual coding and development of the software
+Integration /Test:the phase for testing on the software for feedback and ensures safety
+Maintenance:the phase for error correction, enhance functionality or adapt software to new environments
+Software Development Life Cycle:SDLC
 The analysis phase:the first step to the waterfall model
-The maintenance phase:The highest cost phase of software development
+The maintenance phase:the highest cost phase of software development
