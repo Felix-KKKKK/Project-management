@@ -62,6 +62,6 @@ public class Question {
      */
     public String toString() {
 
-        return "Question: What is " + question + "\nAnswer: " + answer;
+        return "Question: What is a " + question + "\nAnswer: " + answer;
     }
 }
