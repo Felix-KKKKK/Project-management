@@ -25,7 +25,7 @@ public class YiProjectManagement {
         //read the file
         try{
             //create the file and scanner for reading the file
-            File f = new File("src/yiprojectmanagement/Notes.txt");
+            File f = new File("src/yiprojectmanagement/notes.txt");
             Scanner s = new Scanner(f);
 
             //add a counter to keep up the index in the arrays
