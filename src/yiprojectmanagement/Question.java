@@ -1,4 +1,6 @@
-
+/**
+ * Question class that asks or stores questions towards the user and gives answers
+ */
 public class Question {
 
     private String question;
