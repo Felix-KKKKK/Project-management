@@ -197,11 +197,7 @@ public class YiProjectManagement {
                                                                + "2. Do the quiz for self-evaluation\n"
                                                                + "3. Quit");
             
-            //do the action that the user asks us to do
-            if(ans == null){
-                end = true;
-            }
-            else if(ans.equals("3")){
+            if(ans.equals("3")){
                 //if the user asks to quit, end the while loop
                 end = true;
             }
