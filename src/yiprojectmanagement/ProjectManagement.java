@@ -22,42 +22,38 @@ public class YiProjectManagement {
     
     public static void readFile(Question[] questionList){
         //read the file
-        try{
-            //create the file and scanner for reading the file
-            File f = new File("src/yiprojectmanagement/Notes.txt");
-            Scanner s = new Scanner(f);
+        //create the file and scanner for reading the file
+        InputStream f = YiProjectManagement.class.getResourceAsStream("notes.txt");
+        Scanner s = new Scanner(f);
 
-            //add a counter to keep up the index in the arrays
-            int counter = 0;
-            
-            //run until the text has no more information to store
-            while(s.hasNextLine()){
-                //get the next line
-                String defTerm = s.nextLine();
+        //add a counter to keep up the index in the arrays
+        int counter = 0;
 
-                //get the terms and definitions, store them in two arrays
-                String[] defTermArray = defTerm.split(": ");
+        //run until the text has no more information to store
+        while(s.hasNextLine()){
+            //get the next line
+            String defTerm = s.nextLine();
 
-                //store the first item in the term array, the second one in the def array for designing the quiz
-                String term = defTermArray[0];
-                String def = "Which of the following is corresponding to: " + defTermArray[1];
-                
-                //add it to the studying material
-                studyMaterial += term + ": \n" + defTermArray[1] + "\n\n";
-                
-                //create the question
-                Question question = new Question(def, term);
-                
-                //add the question to the question list
-                questionList[counter] = question;
-                
-                //add one to the counter
-                counter ++;
-                
-            }
-        }catch(FileNotFoundException e){
-            System.out.println("Error: " + e);
-        }    
+            //get the terms and definitions, store them in two arrays
+            String[] defTermArray = defTerm.split(": ");
+
+            //store the first item in the term array, the second one in the def array for designing the quiz
+            String term = defTermArray[0];
+            String def = "Which of the following is corresponding to: " + defTermArray[1];
+
+            //add it to the studying material
+            studyMaterial += term + ": \n" + defTermArray[1] + "\n\n";
+
+            //create the question
+            Question question = new Question(def, term);
+
+            //add the question to the question list
+            questionList[counter] = question;
+
+            //add one to the counter
+            counter ++;
+
+        }
     }
     
     public static void quiz(Question[] questionList){
@@ -89,7 +85,7 @@ public class YiProjectManagement {
             String wrongAns2 = questionList[wrongAns2Index].getAnswer();
             String wrongAns3 = questionList[wrongAns3Index].getAnswer();
             
-            //get the random 1234 for the correct answer and the wrong one
+            //get the random ABCD for the correct answer and the wrong one
             //add the four answers to an arrayList
             ArrayList<String> choiceList = new ArrayList<>();
             choiceList.add(wrongAns1);
@@ -100,21 +96,33 @@ public class YiProjectManagement {
             //shuffle them
             Collections.shuffle(choiceList);
             
-            //set the ans index
-            int ansIndex = -1;
+            //set the ans for ABCD
+            String ansProblem = "";
             
             //get where is the correct answer in the list by comparing all the answers
             for(int x = 0; x < 4; x++){
                 if(choiceList.get(x).equals(question.getAnswer())){
-                    ansIndex = x + 1; 
+                    if(x == 0){
+                        ansProblem = "A";
+                    }
+                    if(x == 1){
+                        ansProblem = "B";
+                    }
+                    if(x == 2){
+                        ansProblem = "C";
+                    }
+                    if(x == 3){
+                        ansProblem = "D";
+                    }
                 }
             }
             
-            //add the 1234 in front of the answers
-            choiceList.set(0, "1. " + choiceList.get(0));
-            choiceList.set(1, "2. " + choiceList.get(1));
-            choiceList.set(2, "3. " + choiceList.get(2));
-            choiceList.set(3, "4. " + choiceList.get(3));
+            
+            //add the ABCD in front of the answers
+            choiceList.set(0, "A. " + choiceList.get(0));
+            choiceList.set(1, "B. " + choiceList.get(1));
+            choiceList.set(2, "C. " + choiceList.get(2));
+            choiceList.set(3, "D. " + choiceList.get(3));
             
             
             //show this to the user
@@ -125,14 +133,14 @@ public class YiProjectManagement {
                     + choiceList.get(3));
             
             //if the user gets it correct, add one to the score
-            if(userAns.equals(ansIndex)){
+            if(userAns.equals(ansProblem)){
                 score += 1;
                 JOptionPane.showMessageDialog(null, "You are correct! Keep working!");
             }
             //if the user gets it incorrect, 
-            else if(userAns.equals("1") || userAns.equals("2") || userAns.equals("3") || userAns.equals("4")){
+            else if(userAns.equals("A") || userAns.equals("B") || userAns.equals("C") || userAns.equals("D")){
                 wrongConcept.add(question.getAnswer());
-                JOptionPane.showMessageDialog(null, "You are wrong! The correct answer is " + choiceList.get(ansIndex - 1));
+                JOptionPane.showMessageDialog(null, "You are wrong! The correct answer is " + ansProblem + ". " + question.getAnswer());
             }
             //if the user input is invalid, minus one to the i so that it doesn't skip the question
             else{
