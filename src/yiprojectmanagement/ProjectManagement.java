@@ -133,12 +133,15 @@ public class YiProjectManagement {
                     + choiceList.get(3));
             
             //if the user gets it correct, add one to the score
-            if(userAns.equals(ansProblem)){
+            if(userAns == null){
+                i--;
+            }
+            else if(userAns.equalsIgnoreCase(ansProblem)){
                 score += 1;
                 JOptionPane.showMessageDialog(null, "You are correct! Keep working!");
             }
             //if the user gets it incorrect, 
-            else if(userAns.equals("A") || userAns.equals("B") || userAns.equals("C") || userAns.equals("D")){
+            else if(userAns.equalsIgnoreCase("A") || userAns.equalsIgnoreCase("B") || userAns.equalsIgnoreCase("C") || userAns.equalsIgnoreCase("D")){
                 wrongConcept.add(question.getAnswer());
                 JOptionPane.showMessageDialog(null, "You are wrong! The correct answer is " + ansProblem + ". " + question.getAnswer());
             }
@@ -195,7 +198,10 @@ public class YiProjectManagement {
                                                                + "3. Quit");
             
             //do the action that the user asks us to do
-            if(ans.equals("3")){
+            if(ans == null){
+                end = true;
+            }
+            else if(ans.equals("3")){
                 //if the user asks to quit, end the while loop
                 end = true;
             }
