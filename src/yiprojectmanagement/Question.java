@@ -1,6 +1,8 @@
 /**
  * Question class that asks or stores questions towards the user and gives answers
  */
+package yiprojectmanagement;
+
 public class Question {
 
     private String question;
