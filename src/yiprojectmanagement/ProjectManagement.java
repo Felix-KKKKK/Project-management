@@ -1,4 +1,3 @@
-
 /*
  * Felix Yi, Wilson Xie, Emma Tsai
  * May 15th
@@ -25,7 +24,7 @@ public class YiProjectManagement {
         //read the file
         try{
             //create the file and scanner for reading the file
-            File f = new File("src/yiprojectmanagement/notes.txt");
+            File f = new File("src/yiprojectmanagement/Notes.txt");
             Scanner s = new Scanner(f);
 
             //add a counter to keep up the index in the arrays
@@ -41,7 +40,6 @@ public class YiProjectManagement {
 
                 //store the first item in the term array, the second one in the def array for designing the quiz
                 String term = defTermArray[0];
-                System.out.println(term);
                 String def = "Which of the following is corresponding to: " + defTermArray[1];
                 
                 //add it to the studying material
@@ -73,25 +71,23 @@ public class YiProjectManagement {
         for(int i = 0; i < 10; i++){
             //get the question in the question list
             Question question = questionList[i];
-
-            //put all the elements in the arrayList
-            ArrayList<String> allTerms = new ArrayList<>();
-
-            //add all the terms in the arrayList
-            for(Question item: questionList){
-                allTerms.add(item);
+            
+            //set the three wrong answer by randomly getting terms in the questionList
+            int wrongAns1Index = (int)(Math.random() * 10);
+            int wrongAns2Index = (int)(Math.random() * 10);
+            int wrongAns3Index = (int)(Math.random() * 10);
+            
+            //check if they are the same or not
+            while(wrongAns1Index == i || wrongAns2Index == i || wrongAns3Index == i || wrongAns1Index == wrongAns2Index || wrongAns1Index == wrongAns3Index || wrongAns3Index == wrongAns2Index){
+                wrongAns1Index = (int)(Math.random() * 10);
+                wrongAns2Index = (int)(Math.random() * 10);
+                wrongAns3Index = (int)(Math.random() * 10);
             }
-
-            //randomly disrupt the order
-            Collections.shuffle(allTerms);
-
-            //remove the answer to avoid duplication
-            allTerms.remove(question.getAnswer());
             
             //get the string for these wrong answers
-            String wrongAns1 = allTerms.get(0);
-            String wrongAns2 = allTerms.get(1);
-            String wrongAns3 = allTerms.get(2);
+            String wrongAns1 = questionList[wrongAns1Index].getAnswer();
+            String wrongAns2 = questionList[wrongAns2Index].getAnswer();
+            String wrongAns3 = questionList[wrongAns3Index].getAnswer();
             
             //get the random 1234 for the correct answer and the wrong one
             //add the four answers to an arrayList
@@ -122,21 +118,26 @@ public class YiProjectManagement {
             
             
             //show this to the user
-            int userAns = Integer.parseInt(JOptionPane.showInputDialog((i + 1) + ". " +question.getQuestion() + "\n" 
+            String userAns = JOptionPane.showInputDialog((i + 1) + ". " +question.getQuestion() + "\n" 
                     + choiceList.get(0) + "\n" 
                     + choiceList.get(1) + "\n" 
                     + choiceList.get(2) + "\n" 
-                    + choiceList.get(3)));
+                    + choiceList.get(3));
             
             //if the user gets it correct, add one to the score
-            if(userAns == ansIndex){
+            if(userAns.equals(ansIndex)){
                 score += 1;
                 JOptionPane.showMessageDialog(null, "You are correct! Keep working!");
             }
             //if the user gets it incorrect, 
-            else{
+            else if(userAns.equals("1") || userAns.equals("2") || userAns.equals("3") || userAns.equals("4")){
                 wrongConcept.add(question.getAnswer());
                 JOptionPane.showMessageDialog(null, "You are wrong! The correct answer is " + choiceList.get(ansIndex - 1));
+            }
+            //if the user input is invalid, minus one to the i so that it doesn't skip the question
+            else{
+                JOptionPane.showMessageDialog(null, "Invalid input!");
+                i--;
             }
         }
         
@@ -180,23 +181,25 @@ public class YiProjectManagement {
         while(end == false){
 
             //show the choices for the user to choose
-            int ans = Integer.parseInt(JOptionPane.showInputDialog("Please enter the choice that help you review SDLC: \n" 
+            String ans = JOptionPane.showInputDialog("Please enter the choice that help you review SDLC: \n" 
                                                                + "1. Read the studying material\n" 
                                                                + "2. Do the quiz for self-evaluation\n"
-                                                               + "3. Quit"));
+                                                               + "3. Quit");
             
             //do the action that the user asks us to do
-            if(ans == 3){
+            if(ans.equals("3")){
                 //if the user asks to quit, end the while loop
                 end = true;
             }
-            else if(ans == 1){
+            else if(ans.equals("1")){
                 //show the studying material
                 JOptionPane.showMessageDialog(null, studyMaterial);
             }
-            else if(ans == 2){
+            else if(ans.equals("2")){
                 quiz(questionList);
-                
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Invalid input!");
             }
             
         }    
