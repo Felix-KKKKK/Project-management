@@ -73,23 +73,25 @@ public class YiProjectManagement {
         for(int i = 0; i < 10; i++){
             //get the question in the question list
             Question question = questionList[i];
-            
-            //set the three wrong answer by randomly getting terms in the questionList
-            int wrongAns1Index = (int)(Math.random() * 10);
-            int wrongAns2Index = (int)(Math.random() * 10);
-            int wrongAns3Index = (int)(Math.random() * 10);
-            
-            //check if they are the same or not
-            while(wrongAns1Index == i || wrongAns2Index == i || wrongAns3Index == i || wrongAns1Index == wrongAns2Index || wrongAns1Index == wrongAns3Index || wrongAns3Index == wrongAns2Index){
-                wrongAns1Index = (int)(Math.random() * 10);
-                wrongAns2Index = (int)(Math.random() * 10);
-                wrongAns3Index = (int)(Math.random() * 10);
+
+            //put all the elements in the arrayList
+            ArrayList<String> allTerms = new ArrayList<>();
+
+            //add all the terms in the arrayList
+            for(Question item: questionList){
+                allTerms.add(item);
             }
+
+            //randomly disrupt the order
+            Collections.shuffle(allTerms);
+
+            //remove the answer to avoid duplication
+            allTerms.remove(question.getAnswer());
             
             //get the string for these wrong answers
-            String wrongAns1 = questionList[wrongAns1Index].getAnswer();
-            String wrongAns2 = questionList[wrongAns2Index].getAnswer();
-            String wrongAns3 = questionList[wrongAns3Index].getAnswer();
+            String wrongAns1 = allTerms.get(0);
+            String wrongAns2 = allTerms.get(1);
+            String wrongAns3 = allTerms.get(2);
             
             //get the random 1234 for the correct answer and the wrong one
             //add the four answers to an arrayList
